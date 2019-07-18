@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace ElectronicStore.Ultilities
+{
+    public class SD
+    {
+        public const string DefaultProductImage = "default_image.jpg";
+        public const string DefaultBrandImage = "default_image.png";
+        public const string ImageFolderProduct = @"images\ProductImages";
+        public const string ImageFolderBrand = @"images\BrandImages";
+        public const string AdminEndUser = "Admin";
+        public const string SuperAdminEndUser = "Super Admin";
+        public const string CustomerUser = "Customer User";
+    }
+}
