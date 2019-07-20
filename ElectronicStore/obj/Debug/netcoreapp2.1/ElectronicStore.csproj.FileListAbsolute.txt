@@ -273,3 +273,8 @@ D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj
 D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\ProductAttributes\Edit.g.cshtml.cs
 D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
 D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\ProductAttributes\Details.g.cshtml.cs
+D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Areas\Identity\Pages\Account\CreateAdminUser.g.cshtml.cs
+D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Areas\Identity\Pages\Account\AddAdminUserDefault.g.cshtml.cs
+D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LoginPartial.g.cshtml.cs
+D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\ApplicationUsers\Index.g.cshtml.cs
+D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Areas\Customer\Views\Home\Details.g.cshtml.cs

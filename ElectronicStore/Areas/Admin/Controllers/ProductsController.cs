@@ -61,7 +61,7 @@ namespace ElectronicStore.Areas.Admin.Controllers
             {
                 var uploads = Path.Combine(webRootPath, SD.ImageFolderProduct);
                 var extension = Path.GetExtension(files[0].FileName);
-                var names = ProductVM.Products.Name.ToLower().Split(" ");
+                var names = ProductVM.Products.Code.ToLower().Split(" ");
                 var completed_name = "";
                 foreach (var item in names)
                 {
@@ -71,7 +71,7 @@ namespace ElectronicStore.Areas.Admin.Controllers
                 {
                     files[0].CopyTo(filestream);
                 }
-                prodFromDb.Images = @"\" + SD.ImageFolderProduct + @"\" + completed_name + extension;
+                ProductVM.Products.Images = @"\" + SD.ImageFolderProduct + @"\" + completed_name + extension;
             }
             else
             {
@@ -85,7 +85,11 @@ namespace ElectronicStore.Areas.Admin.Controllers
                     completed_name += item;
                 }
                 System.IO.File.Copy(uploads, webRootPath + @"\" + SD.ImageFolderProduct + @"\" + completed_name + ".jpg");
-                prodFromDb.Images = @"\" + SD.ImageFolderProduct + @"\" + completed_name + ".jpg";
+                ProductVM.Products.Images = @"\" + SD.ImageFolderProduct + @"\" + completed_name + ".jpg";
+            }
+            if(ProductVM.Products.Images != null)
+            {
+                prodFromDb.Images = ProductVM.Products.Images;
             }
             if(prodFromDb.Quantity > 0)
             {

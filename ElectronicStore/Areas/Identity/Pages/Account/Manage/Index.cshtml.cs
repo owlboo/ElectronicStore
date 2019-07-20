@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using ElectronicStore.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -16,15 +17,17 @@ namespace ElectronicStore.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext _db;
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            IEmailSender emailSender)
+            IEmailSender emailSender, ApplicationDbContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _db = db;
         }
 
         public string Username { get; set; }
@@ -46,6 +49,15 @@ namespace ElectronicStore.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            [Display(Name ="Address")]
+            public string Address { get; set; }
+            [Display(Name = "Shipping Address")]
+            public string ShippingAddress { get; set; }
+            [Display(Name = "Card Numbers")]
+            public string CardNumber { get; set; }
+            [Display(Name = "Full Name")]
+            public string FullName { get; set; }
+
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -60,12 +72,23 @@ namespace ElectronicStore.Areas.Identity.Pages.Account.Manage
             var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
+            var userId = user.Id;
+            var userFromDb = _db.ApplicationUsers.Where(u => u.Id == userId).FirstOrDefault();
+
+            var addRess = userFromDb.Address;
+            var shippingAddress = userFromDb.ShippingAddress;
+            var cardNumber = userFromDb.CardNumber;
+            var fullName = userFromDb.FullName;
             Username = userName;
 
             Input = new InputModel
             {
                 Email = email,
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Address = addRess,
+                ShippingAddress = shippingAddress,
+                CardNumber = cardNumber,
+                FullName = fullName
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
@@ -107,6 +130,14 @@ namespace ElectronicStore.Areas.Identity.Pages.Account.Manage
                     throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
                 }
             }
+
+            var userID = await _userManager.GetUserIdAsync(user);
+            var UserFromDb = _db.ApplicationUsers.Where(u => u.Id == userID).FirstOrDefault();
+            UserFromDb.FullName = Input.FullName;
+            UserFromDb.Address = Input.Address;
+            UserFromDb.ShippingAddress = Input.ShippingAddress;
+            UserFromDb.CardNumber = Input.CardNumber;
+            await _db.SaveChangesAsync();
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

@@ -11,8 +11,8 @@ namespace ElectronicStore.Ultilities
         public const string DefaultBrandImage = "default_image.png";
         public const string ImageFolderProduct = @"images\ProductImages";
         public const string ImageFolderBrand = @"images\BrandImages";
-        public const string AdminEndUser = "Admin";
         public const string SuperAdminEndUser = "Super Admin";
+        public const string ShippingUser = "Vendor User";
         public const string CustomerUser = "Customer User";
     }
 }
