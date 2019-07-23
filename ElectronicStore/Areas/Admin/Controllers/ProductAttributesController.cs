@@ -39,23 +39,24 @@ namespace ElectronicStore.Areas.Admin.Controllers
                                                 on p.Id equals a.ProductId
                                                 select p).ToList();
             var productsList = _db.Products.ToList();
-            List<Products> position = new List<Products>();
-            foreach (var item in productsList)
-            {
-                for(int i = 0; i < prodsHaveAtt.Count; i++)
-                {
-                    if (item == prodsHaveAtt[i])
-                        position.Add(item);
-                }
-            }
-            int j = 0;
-            while(position.Count!=0)
-            {
-                productsList.Remove(position[j]);
+            //List<Products> position = new List<Products>();
+            //foreach (var item in productsList)
+            //{
+            //    for(int i = 0; i < prodsHaveAtt.Count; i++)
+            //    {
+            //        if (item == prodsHaveAtt[i])
+            //            position.Add(item);
+            //    }
+            //}
+            //int j = 0;
+            //while(position.Count!=0)
+            //{
+            //    productsList.Remove(position[j]);
 
-                position.RemoveAt(j);
-            }
-            AttributesVM.Products = productsList;
+            //    position.RemoveAt(j);
+            //}
+            var products = productsList.Except(prodsHaveAtt);
+            AttributesVM.Products = products;
             return View(AttributesVM);
         }
         //Post Create

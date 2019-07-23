@@ -1,8 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using ElectronicStore.Ultilities
 @using System.Security.Claims;
+@using Microsoft.AspNetCore.Http
+@using ElectronicStore.Extensions
+@using ElectronicStore.Helper
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@inject IHttpContextAccessor HttpContextAccessor
 @{
     var Name = "";
     if (SignInManager.IsSignedIn(User))
@@ -46,6 +50,7 @@
         <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <!-- /Fonts -->
         <link href="//fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/jquery-ui.css" />
         <!-- //Fonts -->
         @*<link href="~/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
             <link href="~/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -86,7 +91,7 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/jquery-ui.css" />
         <!-- //Meta tag Keywords -->
         <!-- Custom-Files -->
         <link rel="stylesheet" href="~/css/bootstrap.css">
@@ -104,7 +109,7 @@
 <body>
     <script type="text/javascript" src="~/js/bootstrap-3.1.1.min.js"></script>
     @*header*@
-    <div class="main-sec inner-page">
+    <div class="main-sec inner-page ">
         <header class="py-sm-3 pt-3 pb-2" id="home">
             <div class="container">
                 <!-- nav -->
@@ -195,6 +200,29 @@
                                 </ul>
                             </li>
                             <li><a href="contact.html">Contact</a></li>
+                            @if (HttpContextAccessor.HttpContext.Session.Get<List<ObjProducts>>("ssShoppingCart") != null && User != null)
+                            {
+                                <li style="color:white" >
+                                    <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                        <i class="fas fa-shopping-cart"></i> &nbsp;
+                                        @{
+                                            var count = HttpContextAccessor.HttpContext.Session.Get<List<ObjProducts>>("ssShoppingCart").Count;
+
+                                        }
+                                        (@count )
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li style="color:white">
+                                    <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                        <i class="fas fa-shopping-cart"></i> &nbsp;
+
+                                        (0 )
+                                    </a>
+                                </li>
+                            }
                         </ul>
                     </nav>
                     <!-- //nav -->
@@ -206,11 +234,16 @@
                             </form>
                         </div>
                     </div>
+
                     <div class="clearfix"></div>
                 </div>
             </div>
         </header>
-
+        <div class="jumbotron" style="background-color:aliceblue; text-align:center">
+            <h1>E L E C T R O N I C</h1>
+            <h3>Online Shop Store</h3>
+            <p>Shopping in your ways</p>
+        </div>
     </div>
 
     <div class="container">
@@ -285,7 +318,7 @@
                 <div class="social-ficons">
                     <ul>
                         <li><a href="http://facebook.com/olw9z"><span><i class="fab fa-facebook"></i></span> Facebook</a></li>
-                        <li><a href="#"><span ><i class="fab fa-twitter"></i></span> Twitter</a></li>
+                        <li><a href="#"><span><i class="fab fa-twitter"></i></span> Twitter</a></li>
                         <li><a href="#"><span><i class="fab fa-google"></i></span> Google</a></li>
                     </ul>
                 </div>
@@ -323,6 +356,8 @@
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery/dist/jquery-ui.js"></script>
+        <script src="~/lib/jquery/dist/jquery-ui.min.js"></script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
@@ -338,6 +373,8 @@
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery/dist/jquery-ui.js"></script>
+        <script src="~/lib/jquery/dist/jquery-ui.min.js"></script>
     </environment>
 
     @RenderSection("Scripts", required: false)

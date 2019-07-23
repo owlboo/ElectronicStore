@@ -278,3 +278,8 @@ D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj
 D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LoginPartial.g.cshtml.cs
 D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\ApplicationUsers\Index.g.cshtml.cs
 D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Areas\Customer\Views\Home\Details.g.cshtml.cs
+D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Views\Customer\Shared\_RelatedProduct.g.cshtml.cs
+D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Views\Customer\Shared\_RelatedProducts.g.cshtml.cs
+D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Areas\Customer\Views\ShoppingCart\Index.g.cshtml.cs
+D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_NoContentError.g.cshtml.cs
+D:\Coding\ASP.NET\Backup\ElectronicStore1707\ElectronicStore\ElectronicStore\obj\Debug\netcoreapp2.1\Razor\Areas\Customer\Views\ShoppingCart\OrderConfirm.g.cshtml.cs

@@ -18,5 +18,8 @@ namespace ElectronicStore.Data
         public DbSet<Products> Products { get; set; }
         public DbSet<ProductAttributes> ProductAttributes { get; set; }
         public DbSet<ApplicationUsers> ApplicationUsers { get; set; }
+        public DbSet<OrderBills> Orders { get; set; }
+        public DbSet<ProductSelectedForBill> ProductSelectedForOrders { get; set; }
+        public DbSet<Coupons> Coupons { get; set; }
     }
 }

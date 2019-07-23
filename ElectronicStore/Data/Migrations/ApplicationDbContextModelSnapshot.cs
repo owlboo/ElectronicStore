@@ -59,6 +59,46 @@ namespace ElectronicStore.Data
                     b.ToTable("Brands");
                 });
 
+            modelBuilder.Entity("ElectronicStore.Models.Coupons", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DiscountPercentage");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Coupons");
+                });
+
+            modelBuilder.Entity("ElectronicStore.Models.OrderBills", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BillName");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("CustomerId");
+
+                    b.Property<long>("ShippingFee");
+
+                    b.Property<bool>("Status");
+
+                    b.Property<long>("TotalPrice");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("ElectronicStore.Models.ProductAttributes", b =>
                 {
                     b.Property<long>("Id")
@@ -208,6 +248,27 @@ namespace ElectronicStore.Data
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("ElectronicStore.Models.ProductSelectedForBill", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("OrderId");
+
+                    b.Property<long>("ProductId");
+
+                    b.Property<int>("ProductQuantity");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductSelectedForOrders");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -396,6 +457,13 @@ namespace ElectronicStore.Data
                     b.HasDiscriminator().HasValue("ApplicationUsers");
                 });
 
+            modelBuilder.Entity("ElectronicStore.Models.OrderBills", b =>
+                {
+                    b.HasOne("ElectronicStore.Models.ApplicationUsers", "Customers")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+                });
+
             modelBuilder.Entity("ElectronicStore.Models.ProductAttributes", b =>
                 {
                     b.HasOne("ElectronicStore.Models.Products", "Products")
@@ -414,6 +482,19 @@ namespace ElectronicStore.Data
                     b.HasOne("ElectronicStore.Models.ProductCategory", "ProductCategory")
                         .WithMany()
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ElectronicStore.Models.ProductSelectedForBill", b =>
+                {
+                    b.HasOne("ElectronicStore.Models.OrderBills", "Orders")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ElectronicStore.Models.Products", "Products")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

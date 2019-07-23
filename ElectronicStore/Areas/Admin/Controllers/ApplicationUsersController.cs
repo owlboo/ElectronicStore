@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using ElectronicStore.Data;
 using ElectronicStore.Models;
 using ElectronicStore.Ultilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ElectronicStore.Areas.Admin.Controllers
 {
+    [Authorize(Roles = SD.SuperAdminEndUser)]
     [Area("Admin")]
     public class ApplicationUsersController : Controller
     {
