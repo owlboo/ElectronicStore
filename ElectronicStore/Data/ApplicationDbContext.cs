@@ -21,5 +21,6 @@ namespace ElectronicStore.Data
         public DbSet<OrderBills> Orders { get; set; }
         public DbSet<ProductSelectedForBill> ProductSelectedForOrders { get; set; }
         public DbSet<Coupons> Coupons { get; set; }
+        public DbSet<ShipperAssignedForOrder> ShipperAssignedForOrders { get; set; }
     }
 }
