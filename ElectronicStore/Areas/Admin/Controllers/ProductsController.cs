@@ -33,7 +33,7 @@ namespace ElectronicStore.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            var prodFromDb = _db.Products.Include(p => p.ProductCategory).Include(p => p.Brands);
+            var prodFromDb = _db.Products.Include(p => p.ProductCategory).Include(p => p.Brands).Include(p=>p.ProductImages);
             return View(prodFromDb.ToList());
         }
         #region Create
@@ -55,6 +55,7 @@ namespace ElectronicStore.Areas.Admin.Controllers
             await _db.SaveChangesAsync();
 
             string webRootPath = _hostingEnvironment.WebRootPath;
+            var images = HttpContext.Request.Form.Files;
             var files = HttpContext.Request.Form.Files;
             var prodFromDb = _db.Products.Find(ProductVM.Products.Id);
             if (files.Count != 0)
@@ -67,11 +68,11 @@ namespace ElectronicStore.Areas.Admin.Controllers
                 {
                     completed_name += item;
                 }
-                using (var filestream = new FileStream(Path.Combine(uploads, completed_name + extension), FileMode.Create))
+                using (var filestream = new FileStream(Path.Combine(uploads, completed_name+"-thumnail"+ extension), FileMode.Create))
                 {
                     files[0].CopyTo(filestream);
                 }
-                ProductVM.Products.Images = @"\" + SD.ImageFolderProduct + @"\" + completed_name + extension;
+                ProductVM.Products.Images = @"\" + SD.ImageFolderProduct + @"\" + completed_name+ "-thumnail" + extension;
             }
             else
             {
@@ -86,6 +87,33 @@ namespace ElectronicStore.Areas.Admin.Controllers
                 }
                 System.IO.File.Copy(uploads, webRootPath + @"\" + SD.ImageFolderProduct + @"\" + completed_name + ".jpg");
                 ProductVM.Products.Images = @"\" + SD.ImageFolderProduct + @"\" + completed_name + ".jpg";
+            }
+            int i = 0;
+            if (images.Count > 0)
+            {
+                foreach (var item in images)
+                {
+                    var uploads = Path.Combine(webRootPath, SD.ImageFolderProduct);
+                    var extension = Path.GetExtension(item.FileName);
+                    var names = ProductVM.Products.Code.ToLower().Split(" ");
+                    var completed_name = "";
+                    foreach (var name in names)
+                    {
+                        completed_name += name;
+                    }
+                    using (var filestream = new FileStream(Path.Combine(uploads, completed_name + "-" + (i) + extension), FileMode.Create))
+                    {
+                        item.CopyTo(filestream);
+                    }
+                    ProductImages imageUrl = new ProductImages()
+                    {
+                        ProductId = ProductVM.Products.Id,
+                        ImageUrl = @"\" + SD.ImageFolderProduct + @"\" + completed_name+ "-" + (i) + extension
+                    };
+                    i++;
+                    _db.ProductImages.Add(imageUrl);
+                    await _db.SaveChangesAsync();
+                }
             }
             if(ProductVM.Products.Images != null)
             {

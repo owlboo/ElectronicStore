@@ -34,7 +34,9 @@
             window.scrollTo(0, 1);
         }
     </script>
-
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -132,6 +134,10 @@
                                         {
                                             <a asp-area="Admin" asp-controller="HomeAdmin" asp-action="Index"><span><i class="fas fa-tools" style="color:black;"></i></span></a>
                                         }
+                                        else if (User.IsInRole(SD.ShippingUser))
+                                        {
+                                            <a asp-area="Shipper" asp-controller="Home" asp-action="Index"><span><i class="fas fa-tasks" style="color:black"></i></span></a>
+                                        }
                                         <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @Name!</a>
                                         <button type="submit" class="btn" style="background-color:aliceblue; text-shadow:none">Logout</button>
                                     </div>
@@ -202,7 +208,7 @@
                             <li><a href="contact.html">Contact</a></li>
                             @if (HttpContextAccessor.HttpContext.Session.Get<List<ObjProducts>>("ssShoppingCart") != null && User != null)
                             {
-                                <li style="color:white" >
+                                <li style="color:white">
                                     <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
                                         <i class="fas fa-shopping-cart"></i> &nbsp;
                                         @{
@@ -229,9 +235,9 @@
                     <div class="search-form ml-auto">
                         <div class="form-w3layouts-grid">
                             <form action="#" method="post" class="newsletter">
-                                <input class="search" type="search" placeholder="Search here..." required="">
-                                <button class="form-control btn" value=""><span class="fa fa-search"></span></button>
-                            </form>
+                                    <input class="search" type="text" id="productList" placeholder="Search here..." required="">
+                                    <button class="form-control btn" value=""><span class="fa fa-search"></span></button>
+                                </form>
                         </div>
                     </div>
 
@@ -350,6 +356,13 @@
                 for (i = 0, len = items.length; i < len; i++) {
                 }
             }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#productList').autocomplete({
+                source: "api/ProductsNameSearch/search"
+            });
         });
     </script>
     <environment include="Development">

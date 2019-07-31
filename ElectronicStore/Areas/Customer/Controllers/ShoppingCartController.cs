@@ -102,7 +102,11 @@ namespace ElectronicStore.Areas.Customer.Controllers
             await _db.SaveChangesAsync();
 
             long orderId = order.Id;
-
+            ShipperAssignedForOrder forOrder = new ShipperAssignedForOrder()
+            {
+                OrderId = order.Id
+            };
+            _db.ShipperAssignedForOrders.Add(forOrder);
             foreach (var item in objProducts)
             {
                 ProductSelectedForBill productSelectedForBill = new ProductSelectedForBill()

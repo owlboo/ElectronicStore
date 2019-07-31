@@ -39,7 +39,7 @@ namespace ElectronicStore.Areas.Customer.Controllers
         }
         public IActionResult Index()
         {
-            var products = _db.Products.Include(p => p.Brands).Include(p => p.ProductCategory);
+            var products = _db.Products.Include(p => p.Brands).Include(p => p.ProductCategory).Include(P=>P.ProductImages);
             return View(products.ToList());
         }
         //Details GET
@@ -49,7 +49,9 @@ namespace ElectronicStore.Areas.Customer.Controllers
             {
                 return NotFound();
             }
-            DetailsVM.Products = _db.Products.Include(p => p.Brands).Include(p => p.ProductCategory).Where(p => p.Id == id).FirstOrDefault();
+            ICollection<ProductImages> Images = _db.ProductImages.Where(i => i.ProductId == id).ToList();
+            DetailsVM.Products = _db.Products.Include(p => p.Brands).Include(p => p.ProductCategory).Include(P => P.ProductImages).Where(p => p.Id == id).FirstOrDefault();
+            DetailsVM.Products.ProductImages = Images;
             if (DetailsVM.Products == null)
             {
                 return NotFound();

@@ -7,7 +7,8 @@ namespace ElectronicStore.Models.ViewModels
 {
     public class ShipperForOrderViewModel
     {
-        public OrderBills Order { get; set; }
-        public List<ApplicationUsers> Shipper { get; set; }
+        public ShipperAssignedForOrder ShipperAssignedForOrder { get; set; }
+        public OrderBills Orders { get; set; }
+        public IEnumerable<ApplicationUsers> Shipper { get; set; }
     }
 }

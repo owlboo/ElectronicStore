@@ -216,6 +216,22 @@
                                     <span>Users</span>
                                 </a>
                             </li>
+                            <hr class="sidebar-divider">
+                            <li class="nav-item">
+                                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                    <i class="fas fa-file-invoice-dollar"></i>
+                                    <span>Orders</span>
+                                </a>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                    <div class="bg-white py-2 collapse-inner rounded">
+                                        <a class="collapse-item" asp-area="Admin" asp-controller="Orders" asp-action="Index">Not Assigned</a>
+                                        <a class="collapse-item" asp-area="Admin" asp-controller="Orders" asp-action="Pending">Pending Confirm</a>
+                                        <a class="collapse-item" asp-area="Admin" asp-controller="Orders" asp-action="Successful" >Successful</a>                                    
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Nav Item - Pages Collapse Menu -->
+
                         </ul>
                     </nav>
                 </div>
@@ -240,17 +256,17 @@
                 <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
                 <!-- Core plugin JavaScript-->
-                <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+                <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
 
                 <!-- Custom scripts for all pages-->
-                <script src="js/sb-admin-2.min.js"></script>
+                <script src="~/js/sb-admin-2.min.js"></script>
 
                 <!-- Page level plugins -->
-                <script src="vendor/chart.js/Chart.min.js"></script>
+                <script src="~/vendor/chart.js/Chart.min.js"></script>
 
                 <!-- Page level custom scripts -->
-                <script src="js/demo/chart-area-demo.js"></script>
-                <script src="js/demo/chart-pie-demo.js"></script>
+                <script src="~/js/demo/chart-area-demo.js"></script>
+                <script src="~/js/demo/chart-pie-demo.js"></script>
                 <script src="~/lib/jquery/dist/jquery-ui.js"></script>
                 <script src="~/lib/jquery/dist/jquery-ui.min.js"></script>
             </environment>

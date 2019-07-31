@@ -63,7 +63,7 @@ using ElectronicStore.Models;
             WriteLiteral("\r\n<br /> <br />\r\n<div>\r\n    <div class=\"row\">\r\n        <div class=\"col-6\">\r\n            <h2 class=\"text-info\">Users List</h2>\r\n        </div>\r\n        <div class=\"col-5 text-right\">\r\n            ");
             EndContext();
             BeginContext(350, 127, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cbcf1859e5b7464f8481705beb8b1796", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "df0c163f360c413c993e0629485849af", async() => {
                 BeginContext(430, 43, true);
                 WriteLiteral("<i class=\"fas fa-plus\"></i> &nbsp; New User");
                 EndContext();

@@ -169,7 +169,7 @@ WriteAttributeValue("", 716, product.Images, 716, 15, false);
             WriteLiteral("\r\n                                  </div>\r\n                                  ");
             EndContext();
             BeginContext(2028, 211, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "69b2ef63d7434f4cb319b5d92a806cf4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2cea19ba41614cb6a946429b57f624eb", async() => {
                 BeginContext(2166, 69, true);
                 WriteLiteral("<label style=\"font-size:10px; text-align:center\">View Details</label>");
                 EndContext();
@@ -326,7 +326,7 @@ WriteAttributeValue("", 2931, product.Images, 2931, 15, false);
             WriteLiteral("                            </div>\r\n                            ");
             EndContext();
             BeginContext(4099, 211, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5138296637d14883bdef83512edf6a7d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a5862ce9748a44daa9322fd4d874d926", async() => {
                 BeginContext(4237, 69, true);
                 WriteLiteral("<label style=\"font-size:10px; text-align:center\">View Details</label>");
                 EndContext();

@@ -1,0 +1,161 @@
+﻿@model ElectronicStore.Models.ViewModels.ShipperForOrderViewModel
+@using ElectronicStore.Extensions
+@using ElectronicStore.Data
+@using ElectronicStore.Ultilities
+@using Microsoft.EntityFrameworkCore;
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shipper/Shared/_Layout.cshtml";
+    double sum = 0;
+    double total = 0;
+    double shippingFee = 500000;
+}
+@{
+    var _db = (ApplicationDbContext)ViewData["DbContext"];
+    var productList = _db.ProductSelectedForOrders.Include(p => p.Products).Include(p => p.Orders).Where(p => p.OrderId == Model.Orders.Id).ToList();
+
+}
+<br />
+<br />
+<h2>Order Details</h2>
+<div class="container row">
+    <div class="col-lg-8">
+        <h4 class="text-dark">SHIPPING ADDRESS</h4>
+
+        <hr />
+        <div class="row">
+            <div class="col-4">
+                <label class="text-dark">Customer Name:</label>
+            </div>
+            <div class="col-8 text-left">
+                <label style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@Model.Orders.Customers.FullName </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label class="text-dark">Address:</label>
+            </div>
+            <div class="col-8 text-left">
+                <label style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@Model.Orders.Customers.ShippingAddress</label>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label class="text-dark">Phone:</label>
+            </div>
+            <div class="col-8 text-left">
+                <label style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@Model.Orders.Customers.PhoneNumber</label>
+            </div>
+        </div>
+        <hr />
+        <h4 class="text-dark">SHIPPING METHODS</h4>
+        <hr />
+        <div class="row">
+            <div class="col-2">
+                <input type="checkbox" class="checkbox" checked disabled />
+            </div>
+            <div class="col-10 text-left">
+                <label style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"><b>Standard</b>(VND @Model.Orders.ShippingFee)</label>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-10 text-right">
+                <a href='javascript:history.go(-1)' class="btn btn-primary">Back to List</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <h4 class="text-dark">ORDER SUMMARY</h4>
+        <hr />
+        <div class="row">
+            <div class="col-4">
+                <label class="text-dark">Order Name:</label>
+            </div>
+            <div class="col-8 text-left">
+                @*<label id="billName" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" asp-for="@Model.Order.BillName"></label>*@
+                <input id="billName" asp-for="@Model.Orders.BillName" class="form-control" readonly type="text" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label class="text-dark">Order Time:</label>
+            </div>
+            <div class="col-8 text-left">
+                @*<label id="billTime" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" asp-for="@Model.Order.CreatedDate"></label>*@
+                <input id="billTime" asp-for="@Model.Orders.CreatedDate" class="form-control" readonly type="text" />
+            </div>
+        </div>
+        <hr />
+
+        <div class="row">
+            <table class="table table-striped">
+                <tr class="table-dark">
+                    <th style="text-align:center">PRODUCTS</th>
+                    <th></th>
+                    <th></th>
+                    <th style="text-align:center">QUANTITY</th>
+                    <th style="text-align:center">PRICE</th>
+                </tr>
+                @for (int i = 0; i < productList.Count; i++)
+                {
+                    <tr>
+                        <td style="text-align:center;">@productList[i].Products.Name</td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align:center;">@productList[i].ProductQuantity</td>
+                        <td style="text-align:center;">
+                            @if (@productList[i].Products.PromotionPrice > 0)
+                            {
+                                @Html.DisplayFor(c => @productList[i].Products.PromotionPrice);
+                                sum += @productList[i].Products.PromotionPrice * @productList[i].ProductQuantity;
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(c => @productList[i].Products.Price);
+                                sum += @productList[i].Products.Price * @productList[i].ProductQuantity;
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-4">
+                <label class="text-dark">Subtotal:</label>
+            </div>
+            <div class="col-8" style="text-align:right">
+                <label style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@sum</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label class="text-dark">Shipping:</label>
+            </div>
+            <div class="col-8" style="text-align:right">
+                @*<label style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" asp-for="@Model.Order.ShippingFee" >@shippingFee</label>*@
+                <input type="text" style="text-align:right" asp-for="@Model.Orders.ShippingFee" class="form-control" readonly value="@Model.Orders.ShippingFee" />
+            </div>
+        </div>
+        @{
+            total = sum + shippingFee;
+        }
+        <div class="row">
+            <div class="col-4">
+                <label class="text-dark">OrderTotal:</label>
+            </div>
+            <div class="col-8" style="text-align:right">
+                @*<label style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" asp-for="@Model.Order.TotalPrice">VND @total</label>*@
+                <input type="text" style="text-align:right" asp-for="@Model.Orders.TotalPrice" class="form-control" readonly value="@Model.Orders.TotalPrice" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

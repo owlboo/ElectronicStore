@@ -9,6 +9,7 @@ namespace ElectronicStore.Areas.Identity.Pages.Account.Manage
     public static class ManageNavPages
     {
         public static string Index => "Index";
+        public static string YourOrders => "YourOrders";
 
         public static string ChangePassword => "ChangePassword";
 
@@ -23,6 +24,7 @@ namespace ElectronicStore.Areas.Identity.Pages.Account.Manage
         public static string TwoFactorAuthentication => "TwoFactorAuthentication";
 
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
+        public static string YourOrdersClass(ViewContext viewContext) => PageNavClass(viewContext, YourOrders);
 
         public static string ChangePasswordNavClass(ViewContext viewContext) => PageNavClass(viewContext, ChangePassword);
 

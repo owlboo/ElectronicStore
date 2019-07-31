@@ -1,0 +1,12 @@
+﻿@page
+@model DetailsModel
+@using ElectronicStore.Data
+@using Microsoft.EntityFrameworkCore
+@{
+    ApplicationDbContext db = (ApplicationDbContext)ViewData["DbContext"];
+    var sh_order = db.ShipperAssignedForOrders.Include(s => s.Orders).Include(s => s.Shippers).Where(s => s.OrderId.Equals(ViewData["orderId"])).FirstOrDefault();
+}
+
+<div>
+    <label>@sh_order.Orders.BillName</label>
+</div>

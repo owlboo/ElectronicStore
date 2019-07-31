@@ -64,7 +64,7 @@ using ElectronicStore.Models;
             WriteLiteral("<br /> <br />\r\n<div>\r\n    <div class=\"row\">\r\n        <div class=\"col-6\">\r\n            <h2 class=\"text-info\">Brands List</h2>\r\n        </div>\r\n        <div class=\"col-5 text-right\">\r\n            ");
             EndContext();
             BeginContext(339, 103, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5d35d22b05d64a38a0257b005c30d9df", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f018ca0fb71e437081722d7ef19f71e2", async() => {
                 BeginContext(383, 55, true);
                 WriteLiteral("<i class=\"fas fa-plus\"></i> &nbsp; New Category Product");
                 EndContext();
@@ -248,7 +248,7 @@ WriteAttributeValue("", 2096, item.Image, 2096, 11, false);
             WriteLiteral("\r\n                        </td>\r\n                        <td style=\"text-align:center\">\r\n                            ");
             EndContext();
             BeginContext(3088, 72, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "8a670ffd32d74dfbbecb05665b94836c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "dd678f2ff3b546f99368c5705e9034f2", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();

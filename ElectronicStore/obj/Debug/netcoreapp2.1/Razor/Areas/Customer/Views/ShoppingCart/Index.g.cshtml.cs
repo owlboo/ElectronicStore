@@ -98,7 +98,7 @@ using ElectronicStore.Helper;
 #line default
 #line hidden
             BeginContext(479, 5283, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "63cea2b716784dd5aab545c5df33a796", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ac76ef30c54941eab27ccb9beb6f26d6", async() => {
                 BeginContext(499, 83, true);
                 WriteLiteral("\r\n    <br /><br />\r\n    <h2 class=\"text-dark\">Your Shopping Cart</h2>\r\n    <br />\r\n");
                 EndContext();
@@ -145,7 +145,7 @@ using ElectronicStore.Helper;
                 WriteLiteral("                            <tr>\r\n                                <td>\r\n                                    ");
                 EndContext();
                 BeginContext(1812, 319, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d97478a4e12948b2a979953e2e5202ef", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fd3e5966ecc8463a9a9085e88765aecf", async() => {
                     BeginContext(1915, 46, true);
                     WriteLiteral("\r\n                                        <img");
                     EndContext();
@@ -255,7 +255,7 @@ WriteAttributeValue("", 1967, Model.Products[i].Images, 1967, 25, false);
                 WriteLiteral("</td>\r\n                                <td></td>\r\n                                <td>\r\n                                    ");
                 EndContext();
                 BeginContext(3316, 128, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5f60921e4654474cb02739992198f79f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b8124934ae0a4290880cf817fc103c53", async() => {
                     BeginContext(3407, 28, true);
                     WriteLiteral("<i class=\"fas fa-times\"></i>");
                     EndContext();
@@ -350,7 +350,7 @@ WriteAttributeValue("", 1967, Model.Products[i].Images, 1967, 25, false);
                                 ");
                 EndContext();
                 BeginContext(5146, 135, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6140bd705ba241ba94100e33ab89ba1d", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f1db163d3c6429ebf0fb1db7c68dbbb", async() => {
                     BeginContext(5265, 4, true);
                     WriteLiteral("VND ");
                     EndContext();
@@ -384,7 +384,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                            </div>\r\n                        </div>\r\n                        <br />\r\n\r\n                        ");
                 EndContext();
                 BeginContext(5409, 166, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a1c3ea1a129841afa925a5a7ddaa6274", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4176180ed0884bcdac6ed3cd2d2c6b8a", async() => {
                     BeginContext(5518, 53, true);
                     WriteLiteral("<i class=\"fas fa-arrow-right\"></i> View Order Details");
                     EndContext();

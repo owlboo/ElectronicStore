@@ -65,7 +65,7 @@ using ElectronicStore.Models;
                    ");
             EndContext();
             BeginContext(316, 103, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d37c68ab5d134bccb013b24c0992e6d6", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a8fe48de044145f5aef3cdf69630e2a5", async() => {
                 BeginContext(360, 55, true);
                 WriteLiteral("<i class=\"fas fa-plus\"></i> &nbsp; New Category Product");
                 EndContext();
@@ -229,7 +229,7 @@ using ElectronicStore.Models;
             WriteLiteral("\r\n                               </td>\r\n                               <td>\r\n                                   ");
             EndContext();
             BeginContext(2734, 72, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "4a5ec10d3d714eab87b16e88d5db16cf", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "b187e37379c24dd7b5494ab54ae560c0", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();

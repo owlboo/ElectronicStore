@@ -3,12 +3,21 @@
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
 <ul class="nav nav-pills nav-stacked">
-    <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a asp-page="./Index">Profile</a></li>
-    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a id="change-password" asp-page="./ChangePassword">Password</a></li>
+    <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a href="@Url.Page("/Account/Manage/Index", new { area = "Identity" })" >Profile</a></li>
+    <li class="@ManageNavPages.YourOrdersClass(ViewContext)"><a id="orders" class="active" asp-area="Customer" asp-controller="Orders" asp-action="Index">Your Orders</a></li>
+    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a id="change-password" href="@Url.Page("/Account/Manage/ChangePassword", new { area = "Identity" })">Password</a></li>
     @if (hasExternalLogins)
     {
-        <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a id="external-login" asp-page="./ExternalLogins">External logins</a></li>
+        <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a id="external-login" href="@Url.Page("/Account/Manage/ExternalLogins", new { area = "Identity" })">External logins</a></li>
     }
-    <li class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)"><a asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
-    <li class="@ManageNavPages.PersonalDataNavClass(ViewContext)"><a asp-page="./PersonalData">Personal data</a></li>
+    <li class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)"><a href="@Url.Page("/Account/Manage/TwoFactorAuthentication", new { area = "Identity" })">Two-factor authentication</a></li>
+    <li class="@ManageNavPages.PersonalDataNavClass(ViewContext)"><a href="@Url.Page("/Account/Manage/PersonalData", new { area = "Identity" })">Personal data</a></li>
 </ul>
+@section Scripts{ 
+    <script>
+        $("#orders").on('click', function () {
+            $('#orders').removeClass('active');
+            $("#oders").addClass('active');
+            });
+    </script>
+}

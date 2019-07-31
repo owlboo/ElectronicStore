@@ -1,0 +1,99 @@
+﻿@model List<ElectronicStore.Models.ShipperAssignedForOrder>
+@using ElectronicStore.Data
+@using Microsoft.EntityFrameworkCore
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Admin/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Orders List</h2>
+        </div>
+        <div class="col-6">
+
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <table class="table table-striped">
+                <tr>
+                    <th style="text-align:center">
+                        Shipper
+                    </th>
+                    <th style="text-align:center">
+                        Order Name
+                    </th>
+                    <th style="text-align:center">
+                        Created Date
+                    </th>
+                    <th style="text-align:center">
+                        Customer Name
+                    </th>
+                    <th style="text-align:center">
+                        Shipping Fee
+                    </th>
+                    <th style="text-align:center">
+                        Total Price
+                    </th>
+                    <th style="text-align:center">
+                        Shipper Confirmation
+                    </th>
+                    <th style="text-align:center">
+                        Status
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(c => item.Shippers.FullName)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(c => item.Orders.BillName)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(c => item.Orders.CreatedDate)
+                        </td>
+                        <td style="text-align:center">
+                            @{ 
+                                ApplicationDbContext db = (ApplicationDbContext)ViewData["DbContext"];
+                                var CustomerName = (from u in db.ApplicationUsers
+                                                    join or in db.Orders on u.Id equals or.CustomerId
+                                                    where or.Id == item.OrderId
+                                                    select u.FullName);
+                             }
+                            @Html.DisplayFor(c => CustomerName)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(c => item.Orders.ShippingFee)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(c => item.Orders.TotalPrice)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(c => item.Orders.ShipperConfirm)
+                        </td>
+                        <td style="text-align:center">
+                            @Html.DisplayFor(c => item.Orders.Status)
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                @if (item.ShipperId != null)
+                                {
+                                    <a class="btn btn-primary" asp-action="Confirm" asp-controller="Orders" asp-route-id="@item.Orders.Id"><i class="fas fa-clipboard-check"></i></a>
+                                }
+                                <a class="btn btn-success" asp-action="Assign" asp-controller="Orders" asp-route-id="@item.Id"><i class="fas fa-calendar-plus"></i></a>
+                                <a class="btn btn-success" asp-action="Details" asp-controller="Orders" asp-route-id="@item.Id"><i class="fas fa-clipboard-list"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+

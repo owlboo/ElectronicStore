@@ -17,6 +17,7 @@ namespace ElectronicStore.Models
         public string SEOTitle { get; set; }
         public string Description { get; set; }
         public string Images { get; set; }
+        public virtual ICollection<ProductImages> ProductImages { get; set; }
         public double Price { get; set; }
         public double PromotionPrice { get; set; }
         public bool IncludeVAT { get; set; }

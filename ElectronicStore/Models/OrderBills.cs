@@ -18,6 +18,7 @@ namespace ElectronicStore.Models
         public virtual ApplicationUsers Customers { get; set; }
         public long ShippingFee { get; set; }
         public long TotalPrice { get; set; }
+        public bool ShipperConfirm { get; set; }
         public bool Status { get; set; }
         //[Display(Name = "Coupon")]
         //public long CouponId { get; set; }

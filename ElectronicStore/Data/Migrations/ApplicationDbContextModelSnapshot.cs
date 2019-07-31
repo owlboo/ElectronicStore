@@ -86,6 +86,8 @@ namespace ElectronicStore.Data
 
                     b.Property<string>("CustomerId");
 
+                    b.Property<bool>("ShipperConfirm");
+
                     b.Property<long>("ShippingFee");
 
                     b.Property<bool>("Status");
@@ -184,6 +186,25 @@ namespace ElectronicStore.Data
                     b.HasKey("Id");
 
                     b.ToTable("ProductCategories");
+                });
+
+            modelBuilder.Entity("ElectronicStore.Models.ProductImages", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ImageUrl");
+
+                    b.Property<long>("ProductId");
+
+                    b.Property<long?>("ProductsId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductsId");
+
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("ElectronicStore.Models.Products", b =>
@@ -489,6 +510,13 @@ namespace ElectronicStore.Data
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ElectronicStore.Models.ProductImages", b =>
+                {
+                    b.HasOne("ElectronicStore.Models.Products", "Products")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductsId");
                 });
 
             modelBuilder.Entity("ElectronicStore.Models.Products", b =>

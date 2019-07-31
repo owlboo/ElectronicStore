@@ -1,0 +1,85 @@
+﻿@model List<ElectronicStore.Models.OrderBills>
+@using ElectronicStore.Extensions
+@using ElectronicStore.Data
+@using ElectronicStore.Ultilities
+@using Microsoft.EntityFrameworkCore;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
+}
+
+<br />
+
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
+    <script src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="simple.money.format.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-info">Your Orders</h2>
+        <hr />
+        <table class="table table-striped">
+            <tr class="table-info">
+                <th style="text-align:center">Order Name</th>
+                <th style="text-align:center">Order Date</th>
+                <th style="text-align:center">Shipping Address</th>
+                <th style="text-align:center">Shipping Fee</th>
+                <th style="text-align:center">Total Price</th>
+                <th style="text-align:center">Status</th>
+                <th></th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+
+            <tr>
+                <td style="text-align:center">
+                    @Html.DisplayFor(c => item.BillName)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(c => item.CreatedDate)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(c => item.Customers.ShippingAddress)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(c => item.ShippingFee)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(c => item.TotalPrice)
+                </td>
+                @{
+                    var _db = (ApplicationDbContext)ViewData["DbContext"];
+                    var sh_order = _db.ShipperAssignedForOrders.Where(s => s.OrderId == item.Id).FirstOrDefault();
+                }
+                @if (sh_order.ShipperId == null)
+                {
+                    <td style="text-align:center">
+                        Pending
+                    </td>
+                }
+                else if (sh_order.ShipperId != null&&!item.ShipperConfirm)
+                {
+                    <td style="text-align:center">
+                        Delivering
+                    </td>
+                }
+                else if(sh_order.ShipperId != null && item.ShipperConfirm)
+                {
+                    <td style="text-align:center">
+                        Completed
+                    </td>
+                }
+                <td></td>
+                <td>
+                    <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-clipboard-list"></i></a>
+                </td>
+
+            </tr>
+            }
+        </table>
+    </div>
+
+</body>
+
